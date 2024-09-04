@@ -22,4 +22,14 @@ describe('StringCalculatorService', () => {
     expect(service.add('1,2')).toBe(3);
   });
 
+
+  it('should return the number itself when a single number is provided', () => {
+    expect(service.add('1')).toBe(1);
+    expect(service.add('5')).toBe(5);
+  });
+
+  it('should return the sum of multiple numbers separated by commas', () => {
+    expect(service.add('1,2,3')).toBe(6);
+  });
+
 });
