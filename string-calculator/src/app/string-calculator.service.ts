@@ -12,7 +12,9 @@ export class StringCalculatorService {
       return 0;
     }
   
-    const numberArray = numbers.split(',').map(num => parseInt(num, 10));
+    const delimiters = [',', '\n'];
+    const delimiterRegex = new RegExp(`[${delimiters.join('')}]`);
+    const numberArray = numbers.split(delimiterRegex).map(num => parseInt(num, 10));
     return numberArray.reduce((sum, num) => sum + num, 0);
   }
 }
