@@ -13,4 +13,13 @@ describe('StringCalculatorService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should return 0 for an empty string', () => {
+    expect(service.add('')).toBe(0);
+  });
+
+  it('should return the sum of two numbers separated by a comma', () => {
+    expect(service.add('1,2')).toBe(3);
+  });
+
 });
