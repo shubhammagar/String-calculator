@@ -41,4 +41,9 @@ describe('StringCalculatorService', () => {
     expect(service.add('//|\n1|2|3')).toBe(6);
   });
 
+  it('should throw an error when negative numbers are provided', () => {
+    expect(() => service.add('1,-2,3')).toThrowError('Negative numbers not allowed: -2');
+    expect(() => service.add('-1,-2,-3')).toThrowError('Negative numbers not allowed: -1, -2, -3');
+  });
+  
 });

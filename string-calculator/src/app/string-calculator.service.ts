@@ -6,14 +6,12 @@ import { Injectable } from '@angular/core';
 export class StringCalculatorService {
 
   constructor() { }
-
   add(numbers: string): number {
     if (!numbers) {
       return 0;
     }
   
-    const delimiters = [',', '\n'];
-    let delimiterRegex = new RegExp(`[${delimiters.join('')}]`);
+    let delimiterRegex = /[,\n]/; // Default delimiters are ',' and '\n'
     let numberString = numbers;
   
     if (numbers.startsWith('//')) {
@@ -28,6 +26,12 @@ export class StringCalculatorService {
     }
   
     const numberArray = numberString.split(delimiterRegex).map(num => parseInt(num, 10));
+  
+    const negatives = numberArray.filter(num => num < 0);
+    if (negatives.length > 0) {
+      throw new Error(`Negative numbers not allowed: ${negatives.join(', ')}`);
+    }
+  
     return numberArray.reduce((sum, num) => sum + num, 0);
   }
 }
